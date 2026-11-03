@@ -690,7 +690,7 @@ button:focus {
 }
 
 .breadcrumb_area .bg-parallax {
-  background: url("../image/about_banner.jpg") no-repeat scroll center 0 / cover;
+  background: url("../imagensOtimizadas/banner-paginas-combo-bambu-zenkai-sushi.webp") no-repeat scroll center 0 / cover;
   opacity: 0.5;
   z-index: -1;
 }
@@ -735,7 +735,7 @@ button:focus {
 }
 
 .blog_banner .bg-parallax {
-  background: url(../image/banner/banner-1.jpg) no-repeat scroll center center;
+  background: url(../imagensOtimizadas/banner-blog-mesa-sushi-entardecer-zenkai-sushi.webp) no-repeat scroll center center;
 }
 
 .blog_banner .banner_content {
@@ -768,7 +768,7 @@ button:focus {
 }
 
 .blog_banner_two .bg-parallax {
-  background: url(../image/banner/banner-2.jpg) no-repeat scroll center
+  background: url(../imagensOtimizadas/banner-post-salao-izakaya-zenkai-sushi.webp) no-repeat scroll center
     top/cover;
 }
 
@@ -847,7 +847,7 @@ button:focus {
 }
 
 .facilities_area .bg-parallax {
-  background: url("../image/facilites_bg.jpg") no-repeat scroll center 0 / cover;
+  background: url("../imagensOtimizadas/banner-facilidades-amigos-izakaya-zenkai-sushi.webp") no-repeat scroll center 0 / cover;
   opacity: 0.15;
 }
 
