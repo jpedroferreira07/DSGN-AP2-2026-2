@@ -47,7 +47,12 @@
     //------- Mailchimp js --------//  
 
     function mailChimp(){
-        $('#mc_embed_signup').find('form').ajaxChimp();
+        $('#mc_embed_signup').find('form').on('submit', function(e){
+            e.preventDefault();
+            var $form = $(this);
+            $form.find('.info').text('Obrigado! Você receberá as novidades do Zenkai Sushi.').css('color', '#f77f00');
+            $form.find('input[type=email]').val('');
+        });
     }
     mailChimp();
     

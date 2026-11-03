@@ -555,7 +555,9 @@ button:focus {
   font-weight: 400;
 }
 
-.banner_content h2 {
+.banner_content h2,
+
+.banner_content h1 {
   font-size: 60px;
   line-height: 60px;
   font-weight: 700;
@@ -743,7 +745,9 @@ button:focus {
   margin-top: 106px;
 }
 
-.blog_banner .banner_content h4 {
+.blog_banner .banner_content h4,
+
+.blog_banner .banner_content h1 {
   font-size: 60px;
   line-height: 66px;
   font-weight: bold;
@@ -3659,16 +3663,21 @@ h6 {
 
 /*# sourceMappingURL=style.css.map */
 
-/*============= Logo em texto (provisorio) =============*/
-.navbar .logo_h .logo_text {
-  display: inline-block;
-  font:
-    700 26px/80px "Playfair Display",
-    serif;
-  color: #04091e;
-  letter-spacing: 1px;
+/*============= Logo do Zenkai Sushi =============*/
+.navbar .logo_h {
+  display: flex;
+  align-items: center;
+  height: 80px;
 }
 
-.navbar .logo_h .logo_text span {
-  color: #f77f00;
+.navbar .logo_h img {
+  height: 46px;
+  width: auto;
+  max-width: none;
+}
+
+/*============= Fotos de prato responsivas =============*/
+.accomodation_item .hotel_img img {
+  max-width: 100%;
+  height: auto;
 }
