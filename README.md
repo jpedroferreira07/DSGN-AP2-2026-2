@@ -19,7 +19,7 @@ Abra o arquivo `index.html` no navegador. Não precisa instalar nada.
 
 O site é publicado via GitHub Pages.
 
-* Link do site publicado:
+* Link do site publicado:https://jpedroferreira07.github.io/DSGN-AP2-2026-2/
 
 ## Páginas do briefing
 
