@@ -1,6 +1,6 @@
 # Zenkai Sushi
 
-Trabalho **AP2 de Design Gráfico e UX** (turma 8003, Ciência de Dados e Inteligência Artificial, Ibmec).
+Trabalho **AP2 de Design Gráfico e UX**
 
 Adaptação do template *Royal Master Hotel* para um novo segmento: o **Zenkai Sushi**, um restaurante japonês temático de Dragon Ball em Shibuya, Tóquio (Japão). A estrutura do template foi mantida. Foram trocados logo, favicon, títulos, textos, botões e todas as fotos.
 
@@ -14,6 +14,12 @@ Adaptação do template *Royal Master Hotel* para um novo segmento: o **Zenkai S
 ## Como visualizar
 
 Abra o arquivo `index.html` no navegador. Não precisa instalar nada.
+
+## Publicação
+
+O site é publicado via GitHub Pages.
+
+* Link do site publicado:
 
 ## Páginas do briefing
 
