@@ -35,7 +35,7 @@
         ];
         groups.forEach(function(sel){
             var items = Array.prototype.filter.call(document.querySelectorAll(sel), function(n){
-                return !n.closest(".zk-hscroll");
+                return !n.closest("#gallery");
             });
             if (!items.length) { return; }
             gsap.set(items, { autoAlpha: 0, y: 60 });
@@ -74,42 +74,23 @@
         });
     };
 
-    /*-------------------------------------------------------------------------------
-	  Scroll horizontal com pin (galeria e "Pratos do Dia")
-	-------------------------------------------------------------------------------*/
+    // Galeria em "tetris": as fotos (250 e 380 de altura) se encaixam numa grade densa e caem na vertical
     Z.horizontalScroll = function(){
-        var targets = [];
-        var gallery = document.querySelector("#gallery");
-        if (gallery) { targets.push(gallery); }
-        var two = document.querySelector(".accomodation_two");
-        if (two) { targets.push(two); }
-        if (!targets.length) { return; }
-
+        var items = gsap.utils.toArray("#gallery .gallery_item");
+        if (!items.length) { return; }
         var mm = gsap.matchMedia();
-        mm.add("(min-width: 992px) and (prefers-reduced-motion: no-preference)", function(){
-            targets.forEach(function(row){
-                var section = row.closest("section");
-                section.classList.add("zk-hscroll-section");
-                row.classList.add("zk-hscroll");
-                var dist = function(){ return Math.max(0, row.scrollWidth - row.parentElement.clientWidth); };
-                gsap.to(row, {
-                    x: function(){ return -dist(); },
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: section, pin: true, scrub: 0.6,
-                        start: "top top+=80",
-                        end: function(){ return "+=" + (dist() + 200); },
-                        invalidateOnRefresh: true, anticipatePin: 1
-                    }
-                });
+        mm.add("(prefers-reduced-motion: no-preference)", function(){
+            gsap.set(items, { autoAlpha: 0, y: -260, rotation: function(i){ return (i % 2 ? 1 : -1) * 4; } });
+            ScrollTrigger.batch(items, {
+                start: "top 92%",
+                once: true,
+                onEnter: function(batch){
+                    gsap.to(batch, {
+                        autoAlpha: 1, y: 0, rotation: 0, duration: 0.9, ease: "bounce.out",
+                        stagger: 0.14, overwrite: true
+                    });
+                }
             });
-            return function(){
-                targets.forEach(function(row){
-                    row.classList.remove("zk-hscroll");
-                    row.closest("section").classList.remove("zk-hscroll-section");
-                    gsap.set(row, { clearProps: "transform" });
-                });
-            };
         });
     };
 
