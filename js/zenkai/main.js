@@ -19,9 +19,12 @@
         Z.heroIntro();   // deixa o hero escondido ate a abertura terminar
         Z.embers();
 
-        // abertura: primeiro acesso = preloader com rachadura; navegacao interna = cortina
-        if (Z.store.get("zk-nav")) {
-            Z.pageEnter(function(){});
+        // abertura: primeiro acesso = preloader com rachadura; troca de pagina ou F5 = Shenlong
+        var arrivedByNav = !!Z.store.get("zk-nav");
+        var reloaded = Z.isReload && !!Z.store.get("zk-pre") && !Z.forcePreloader;
+        if (arrivedByNav || reloaded) {
+            Z.store.del("zk-nav");
+            Z.dragonSweep("enter");
         } else {
             Z.preloader(function(){ Z.markRevealed(); });
             // preloader ja visto (ou ?preloader ausente): revela na hora

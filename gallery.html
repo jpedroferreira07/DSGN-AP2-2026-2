@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="vendors/lenis/lenis.css" />
 <link rel="stylesheet" href="css/zenkai-motion.css" />
 <link rel="stylesheet" href="css/zenkai-intro.css" />
-<script>try{var s=sessionStorage,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(!r&&(!s.getItem("zk-pre")||s.getItem("zk-nav")||/[?&]preloader=1\b/.test(location.search))){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
+<script>try{var s=sessionStorage,r=matchMedia("(prefers-reduced-motion: reduce)").matches,n=performance.getEntriesByType("navigation")[0],rl=!!(n&&n.type==="reload");if(!r&&(!s.getItem("zk-pre")||s.getItem("zk-nav")||rl||/[?&]preloader=1\b/.test(location.search))){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
     </head>
     <body>
         <!--================Header Area =================-->
@@ -34,7 +34,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="imagensOtimizadas/logo-zenkai-sushi-restaurante-japones.webp" alt="Logo do Zenkai Sushi, restaurante japonês temático de Dragon Ball" title="Zenkai Sushi" width="206" height="46"></a>
+                    <a class="navbar-brand logo_h" href="index.html"><img src="imagensOtimizadas/logo-zenkai-sushi-restaurante-japones.webp" alt="Logo do Zenkai Sushi, restaurante japonês temático de Dragon Ball" title="Zenkai Sushi" width="163" height="30"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -252,8 +252,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
         <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
         <script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
         <script src="vendors/nice-select/js/jquery.nice-select.js"></script>
-        <script src="vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
-        <script src="vendors/isotope/isotope-min.js"></script>
         <script src="vendors/lightbox/simpleLightbox.min.js"></script>
         <script src="vendors/gsap/gsap.min.js"></script>
         <script src="vendors/gsap/ScrollTrigger.min.js"></script>
@@ -266,6 +264,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
         <script src="js/zenkai/reveal.js"></script>
         <script src="js/zenkai/ui.js"></script>
         <script src="js/zenkai/counters.js"></script>
+        <script src="js/zenkai/dragon.js"></script>
         <script src="js/zenkai/transitions.js"></script>
         <script src="js/zenkai-shader.js"></script>
         <script src="js/zenkai-forms.js"></script>

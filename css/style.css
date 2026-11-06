@@ -3192,8 +3192,6 @@ h6 {
 }
 
 .primary-checkbox input:checked + label {
-  background: url(../image/elements/primary-check.png) no-repeat center
-    center/cover;
   border: none;
 }
 
@@ -3231,8 +3229,6 @@ h6 {
 }
 
 .confirm-checkbox input:checked + label {
-  background: url(../image/elements/success-check.png) no-repeat center
-    center/cover;
   border: none;
 }
 
@@ -3275,8 +3271,6 @@ h6 {
 }
 
 .disabled-checkbox input:checked + label {
-  background: url(../image/elements/disabled-check.png) no-repeat center
-    center/cover;
   border: none;
 }
 
@@ -3314,8 +3308,6 @@ h6 {
 }
 
 .primary-radio input:checked + label {
-  background: url(../image/elements/primary-radio.png) no-repeat center
-    center/cover;
   border: none;
 }
 
@@ -3353,8 +3345,6 @@ h6 {
 }
 
 .confirm-radio input:checked + label {
-  background: url(../image/elements/success-radio.png) no-repeat center
-    center/cover;
   border: none;
 }
 
@@ -3408,8 +3398,6 @@ h6 {
 }
 
 .disabled-radio input:checked + label {
-  background: url(../image/elements/disabled-radio.png) no-repeat center
-    center/cover;
   border: none;
 }
 
@@ -3671,7 +3659,7 @@ h6 {
 }
 
 .navbar .logo_h img {
-  height: 46px;
+  height: 30px;
   width: auto;
   max-width: none;
 }

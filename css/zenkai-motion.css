@@ -54,8 +54,17 @@
 
 .zk-hscroll > [class*="col-"] {
   flex: 0 0 auto;
-  width: 360px;
-  max-width: 360px;
+}
+
+/* mesmas larguras de coluna do template (container 1170): fotos mantem o tamanho original */
+.zk-hscroll > .col-md-4 {
+  width: 390px;
+  max-width: 390px;
+}
+
+.zk-hscroll > .col-lg-3 {
+  width: 292.5px;
+  max-width: 292.5px;
 }
 
 .zk-hscroll > .gallery_item {
