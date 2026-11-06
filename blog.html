@@ -17,6 +17,9 @@
         <!-- main css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="vendors/lenis/lenis.css" />
+<link rel="stylesheet" href="css/zenkai-motion.css" />
+<script>try{if(!sessionStorage.getItem("zk-pre")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
     </head>
     <body>
         <!--================Header Area =================-->
@@ -392,15 +395,15 @@
                             <aside class="single-sidebar-widget newsletter_widget">
                                 <h4 class="widget_title">Novidades</h4>
                                 <p>Receba receitas e promoções do Zenkai Sushi no seu e-mail.</p>
-                                <div class="form-group d-flex flex-row">
+                                <form class="form-group d-flex flex-row" data-zk-form="newsletter">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Seu e-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu e-mail'">
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" name="EMAIL" placeholder="Seu e-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu e-mail'">
                                     </div>
-                                    <a href="#" class="bbtns">Assinar</a>
-                                </div>	
+                                    <button type="submit" class="bbtns">Assinar</button>
+                                </form>	
                                 <p class="text-bottom">Você pode cancelar a qualquer momento</p>	
                                 <div class="br"></div>							
                             </aside>
@@ -467,7 +470,7 @@
                             <h6 class="footer_title">Novidades</h6>
                             <p>Receba promoções, novos combos e eventos temáticos direto no seu e-mail.</p>		
                             <div id="mc_embed_signup">
-                                <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
+                                <form class="subscribe_form relative" data-zk-form="newsletter">
                                     <div class="input-group d-flex flex-row">
                                         <input name="EMAIL" placeholder="Seu e-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu e-mail'" required="" type="email">
                                         <button class="btn sub-btn"><span class="lnr lnr-location"></span></button>		
@@ -516,13 +519,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
         <script src="js/popper.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="js/jquery.ajaxchimp.min.js"></script>
-        <script src="js/mail-script.js"></script>
         <script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
         <script src="vendors/nice-select/js/jquery.nice-select.js"></script>
-        <script src="js/mail-script.js"></script>
-        <script src="js/stellar.js"></script>
         <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="vendors/gsap/gsap.min.js"></script>
+        <script src="vendors/gsap/ScrollTrigger.min.js"></script>
+        <script src="vendors/gsap/SplitText.min.js"></script>
+        <script src="vendors/lenis/lenis.min.js"></script>
+        <script src="js/zenkai-motion.js"></script>
+        <script src="js/zenkai-shader.js"></script>
+        <script src="js/zenkai-forms.js"></script>
         <script src="js/custom.js"></script>
     </body>
 </html>

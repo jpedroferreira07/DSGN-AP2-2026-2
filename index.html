@@ -23,6 +23,9 @@
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="vendors/lenis/lenis.css" />
+<link rel="stylesheet" href="css/zenkai-motion.css" />
+<script>try{if(!sessionStorage.getItem("zk-pre")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
   </head>
   <body>
     <!--================Header Area =================-->
@@ -119,7 +122,7 @@ Venha viver o melhor da culinária japonesa no Zenkai Sushi.</p>
               </h2>
             </div>
             <div class="col-md-9">
-              <div class="boking_table">
+              <form class="boking_table" data-zk-form="reserva">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="book_tabel_item">
@@ -128,7 +131,7 @@ Venha viver o melhor da culinária japonesa no Zenkai Sushi.</p>
                           <input
                             type="text"
                             class="form-control"
-                            placeholder="Data da reserva"
+                            name="data" placeholder="Data da reserva" autocomplete="off"
                           />
                           <span class="input-group-addon">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -140,7 +143,7 @@ Venha viver o melhor da culinária japonesa no Zenkai Sushi.</p>
                           <input
                             type="text"
                             class="form-control"
-                            placeholder="Horário"
+                            name="horario" placeholder="Horário" autocomplete="off"
                           />
                           <span class="input-group-addon">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -152,7 +155,7 @@ Venha viver o melhor da culinária japonesa no Zenkai Sushi.</p>
                   <div class="col-md-4">
                     <div class="book_tabel_item">
                       <div class="input-group">
-                        <select class="wide">
+                        <select class="wide" name="adultos">
                           <option data-display="Adultos">Adultos</option>
 <option value="1">1 adulto</option>
 <option value="2">2 adultos</option>
@@ -160,7 +163,7 @@ Venha viver o melhor da culinária japonesa no Zenkai Sushi.</p>
                         </select>
                       </div>
                       <div class="input-group">
-                        <select class="wide">
+                        <select class="wide" name="criancas">
                           <option data-display="Crianças">Crianças</option>
 <option value="1">1 criança</option>
 <option value="2">2 crianças</option>
@@ -172,18 +175,18 @@ Venha viver o melhor da culinária japonesa no Zenkai Sushi.</p>
                   <div class="col-md-4">
                     <div class="book_tabel_item">
                       <div class="input-group">
-                        <select class="wide">
+                        <select class="wide" name="mesas">
                           <option data-display="Mesas">Número de mesas</option>
 <option value="1">1 mesa</option>
 <option value="2">2 mesas</option>
 <option value="3">3 mesas</option>
                         </select>
                       </div>
-                      <a class="book_now_btn button_hover" href="contact.html">Reservar mesa</a>
+                      <button type="submit" class="book_now_btn button_hover">Reservar mesa</button>
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -509,12 +512,7 @@ Sobre nós <br />Nossa história<br />Missão e visão
               <h6 class="footer_title">Novidades</h6>
               <p>Receba promoções, novos combos e eventos temáticos direto no seu e-mail.</p>
               <div id="mc_embed_signup">
-                <form
-                  target="_blank"
-                  action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                  method="get"
-                  class="subscribe_form relative"
-                >
+                <form class="subscribe_form relative" data-zk-form="newsletter">
                   <div class="input-group d-flex flex-row">
                     <input
                       name="EMAIL"
@@ -580,13 +578,16 @@ Sobre nós <br />Nossa história<br />Missão e visão
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/mail-script.js"></script>
     <script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="vendors/nice-select/js/jquery.nice-select.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="js/stellar.js"></script>
     <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="vendors/gsap/gsap.min.js"></script>
+    <script src="vendors/gsap/ScrollTrigger.min.js"></script>
+    <script src="vendors/gsap/SplitText.min.js"></script>
+    <script src="vendors/lenis/lenis.min.js"></script>
+    <script src="js/zenkai-motion.js"></script>
+    <script src="js/zenkai-shader.js"></script>
+    <script src="js/zenkai-forms.js"></script>
     <script src="js/custom.js"></script>
   </body>
 </html>
