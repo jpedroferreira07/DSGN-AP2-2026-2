@@ -880,3 +880,218 @@ html.zk-lock body {
     line-height: 40px;
   }
 }
+
+/*---------- Cantos arredondados: painel de reserva e botoes ----------*/
+.hotel_booking_table {
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.button_hover {
+  border-radius: 10px;
+}
+
+@media (max-width: 575px) {
+  .hotel_booking_table {
+    border-radius: 16px;
+  }
+}
+
+/*---------- Cantos arredondados no site todo (16px em cards e fotos, 10px em campos e botoes) ----------*/
+/* cards */
+.facilities_item,
+.testimonial_item,
+.single_sidebar_widget,
+.single-sidebar-widget,
+.categories_post,
+.mapBox {
+  border-radius: 16px;
+}
+
+.categories_post,
+.mapBox,
+.mapBox iframe {
+  overflow: hidden;
+}
+
+.single-comment,
+.comment,
+.post_item {
+  border-radius: 12px;
+}
+
+/* fotos */
+.hotel_img,
+.hotel_img img,
+.gallery_img,
+.gallery_img img,
+.categories_post img,
+.about_history_area img.img-fluid,
+.single-recent-blog-post .thumb img,
+.feature-img img,
+.blog_post > img,
+.single-post .col-6 img,
+.mapBox iframe {
+  border-radius: 16px;
+}
+
+.hotel_img,
+.gallery_img {
+  overflow: hidden;
+}
+
+/* campos e botoes */
+.form-control,
+textarea.form-control,
+.contact_form input,
+.contact_form textarea,
+.subscribe_form input,
+.btn,
+.theme_btn,
+.theme_btn_two,
+.white_btn,
+.primary-btn,
+.view_btn,
+.reply-btn,
+.btn-reply,
+.tag_btn,
+.post_tag a,
+.sub-btn,
+.page-item .page-link {
+  border-radius: 10px;
+}
+
+/* cabecalho: a barra branca ganha cantos de baixo arredondados, e o submenu tambem */
+.navbar {
+  border-radius: 0 0 16px 16px;
+}
+
+.header_area.navbar_fixed {
+  border-radius: 0 0 18px 18px;
+}
+
+.navbar .menu_nav .nav-item.submenu ul {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media (max-width: 575px) {
+  .facilities_item,
+  .testimonial_item,
+  .single_sidebar_widget,
+  .hotel_img,
+  .hotel_img img,
+  .gallery_img,
+  .gallery_img img {
+    border-radius: 12px;
+  }
+}
+
+/* newsletter do rodape: campo + botao formam uma peca so, com cantos arredondados nas pontas */
+.subscribe_form {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.subscribe_form .form-control,
+.subscribe_form input,
+.subscribe_form .sub-btn,
+.subscribe_form .btn {
+  border-radius: 0;
+}
+
+/* fotos do Instagram no rodape */
+.instafeed li,
+.instafeed img {
+  border-radius: 10px;
+}
+
+.instafeed li {
+  overflow: hidden;
+}
+
+/*---------- Transicoes suaves entre secoes (degrades no lugar de cortes secos) ----------*/
+/* faixa do Kamehameha: sai do escuro do painel de reserva no topo e se dissolve no branco embaixo */
+.zk-kame::before,
+.zk-kame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.zk-kame::before {
+  top: 0;
+  height: 34%;
+  background: linear-gradient(180deg, #04091e 0%, rgba(4, 9, 30, 0) 100%);
+  z-index: 1;
+}
+
+.zk-kame::after {
+  bottom: -1px;
+  height: calc(42% + 1px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 70%, #fff 100%);
+  z-index: 2;
+}
+
+/* diferenciais (foto escura): entra do branco do cardapio e sai para o branco do "Sobre nos" */
+.facilities_area > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.facilities_area::before,
+.facilities_area::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 110px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.facilities_area::before {
+  top: 0;
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.facilities_area::after {
+  bottom: 0;
+  background: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* estatisticas: faixa azul escura com padrao de ondas japonesas (seigaiha) e filetes laranja em cima e embaixo */
+.zk-stats {
+  background-color: #04091e;
+  background-image:
+    radial-gradient(circle at 50% 100%, transparent 0 40%, rgba(255, 166, 43, 0.16) 41% 46%, transparent 47% 56%, rgba(255, 166, 43, 0.12) 57% 62%, transparent 63%),
+    radial-gradient(circle at 50% 100%, transparent 0 40%, rgba(255, 166, 43, 0.16) 41% 46%, transparent 47% 56%, rgba(255, 166, 43, 0.12) 57% 62%, transparent 63%);
+  background-size: 64px 32px;
+  background-position: 0 0, 32px 16px;
+  border-top: 3px solid #f77f00;
+  border-bottom: 3px solid #f77f00;
+}
+
+/* rodape e topo das paginas internas */
+.footer-area {
+  background: linear-gradient(180deg, #fff 0, #04091e 120px);
+}
+
+.breadcrumb_area > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb_area::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 70px;
+  background: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
