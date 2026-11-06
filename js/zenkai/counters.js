@@ -30,6 +30,11 @@
         gsap.utils.toArray(".zk-marquee__track").forEach(function(track){
             track.innerHTML = track.innerHTML + track.innerHTML;
             var tween = gsap.to(track, { xPercent: -50, ease: "none", duration: 28, repeat: -1 });
+            // o feixe do Kamehameha dispara da mao do Goku para a direita quando a faixa entra na tela
+            var beam = track.closest(".zk-kame__beam");
+            if (beam) {
+                gsap.from(beam, { clipPath: "inset(0 100% 0 0)", duration: 1, ease: "power3.out", clearProps: "clipPath", scrollTrigger: { trigger: beam, start: "top 92%", once: true } });
+            }
             ScrollTrigger.create({
                 start: 0, end: "max",
                 onUpdate: function(self){

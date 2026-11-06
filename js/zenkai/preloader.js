@@ -11,8 +11,22 @@
         var root = document.createElement("div");
         root.className = "zk-preloader";
         root.setAttribute("aria-hidden", "true");
+        // esfera n tem n estrelas (1 a 7), posicoes em -1..1 dentro da esfera
+        var P = {
+            1: [[0, 0]],
+            2: [[-0.3, 0], [0.3, 0]],
+            3: [[0, -0.3], [-0.3, 0.22], [0.3, 0.22]],
+            4: [[-0.34, -0.34], [0.34, -0.34], [-0.34, 0.34], [0.34, 0.34]],
+            5: [[-0.38, -0.38], [0.38, -0.38], [0, 0], [-0.38, 0.38], [0.38, 0.38]],
+            6: [[-0.32, -0.46], [0.32, -0.46], [-0.32, 0], [0.32, 0], [-0.32, 0.46], [0.32, 0.46]],
+            7: [[-0.34, -0.48], [0.34, -0.48], [-0.4, 0], [0, 0], [0.4, 0], [-0.34, 0.48], [0.34, 0.48]]
+        };
         var orbs = "";
-        for (var i = 0; i < 7; i++) { orbs += '<span class="zk-orb"></span>'; }
+        for (var i = 1; i <= 7; i++) {
+            orbs += '<span class="zk-orb">' + P[i].map(function(s){
+                return '<i style="left:' + (50 + s[0] * 50) + '%;top:' + (50 + s[1] * 50) + '%">★</i>';
+            }).join("") + '</span>';
+        }
         root.innerHTML =
             '<div class="zk-preloader__stage">' +
                 '<div class="zk-preloader__label">Poder de luta</div>' +
