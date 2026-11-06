@@ -25,7 +25,8 @@
         <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="vendors/lenis/lenis.css" />
 <link rel="stylesheet" href="css/zenkai-motion.css" />
-<script>try{if(!sessionStorage.getItem("zk-pre")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
+<link rel="stylesheet" href="css/zenkai-intro.css" />
+<script>try{var s=sessionStorage,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(!r&&(!s.getItem("zk-pre")||s.getItem("zk-nav")||/[?&]preloader=1\b/.test(location.search))){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
     </head>
     <body>
         <!--================Header Area =================-->
@@ -258,9 +259,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos
         <script src="vendors/gsap/ScrollTrigger.min.js"></script>
         <script src="vendors/gsap/SplitText.min.js"></script>
         <script src="vendors/lenis/lenis.min.js"></script>
-        <script src="js/zenkai-motion.js"></script>
+        <script src="js/zenkai/core.js"></script>
+        <script src="js/zenkai/shatter.js"></script>
+        <script src="js/zenkai/preloader.js"></script>
+        <script src="js/zenkai/hero.js"></script>
+        <script src="js/zenkai/reveal.js"></script>
+        <script src="js/zenkai/ui.js"></script>
+        <script src="js/zenkai/counters.js"></script>
+        <script src="js/zenkai/transitions.js"></script>
         <script src="js/zenkai-shader.js"></script>
         <script src="js/zenkai-forms.js"></script>
+        <script src="js/zenkai/main.js"></script>
         <script src="js/custom.js"></script>
     </body>
 </html>

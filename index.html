@@ -31,7 +31,8 @@
     <link rel="stylesheet" href="css/responsive.css" />
 <link rel="stylesheet" href="vendors/lenis/lenis.css" />
 <link rel="stylesheet" href="css/zenkai-motion.css" />
-<script>try{if(!sessionStorage.getItem("zk-pre")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
+<link rel="stylesheet" href="css/zenkai-intro.css" />
+<script>try{var s=sessionStorage,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(!r&&(!s.getItem("zk-pre")||s.getItem("zk-nav")||/[?&]preloader=1\b/.test(location.search))){document.documentElement.classList.add("zk-loading")}}catch(e){}</script>
   </head>
   <body>
     <!--================Header Area =================-->
@@ -199,6 +200,10 @@ Venha viver o melhor da culinária japonesa no Zenkai Sushi.</p>
       </div>
     </section>
     <!--================Banner Area =================-->
+    <!--================ Marquee =================-->
+    <section class="zk-marquee" aria-hidden="true"><div class="zk-marquee__track"><span>Sushi</span><i>&#10022;</i><span>Ramen</span><i>&#10022;</i><span>Temaki</span><i>&#10022;</i><span>Sashimi</span><i>&#10022;</i><span>Saquê</span><i>&#10022;</i><span>Kamehameha</span><i>&#10022;</i></div></section>
+    <!--================ Marquee =================-->
+
 
     <!--================ Accomodation Area  =================-->
     <section class="accomodation_area section_gap">
@@ -334,7 +339,20 @@ Sobre nós <br />Nossa história<br />Missão e visão
     <!--================ About History Area  =================-->
 
     <!--================ Testimonial Area  =================-->
-    <section class="testimonial_area section_gap">
+        <!--================ Stats Area =================-->
+    <section class="zk-stats section_gap">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-6 col-md-3"><div class="zk-stat"><strong data-count="8001" data-suffix="+">0</strong><span>Poder de luta</span></div></div>
+          <div class="col-6 col-md-3"><div class="zk-stat"><strong data-count="36">0</strong><span>Pratos no cardápio</span></div></div>
+          <div class="col-6 col-md-3"><div class="zk-stat"><strong data-count="20">0</strong><span>Anos de tradição</span></div></div>
+          <div class="col-6 col-md-3"><div class="zk-stat"><strong data-count="7">0</strong><span>Esferas no salão</span></div></div>
+        </div>
+      </div>
+    </section>
+    <!--================ Stats Area =================-->
+
+<section class="testimonial_area section_gap">
       <div class="container">
         <div class="section_title text-center">
           <h2 class="title_color">O que dizem nossos clientes</h2>
@@ -586,9 +604,17 @@ Sobre nós <br />Nossa história<br />Missão e visão
     <script src="vendors/gsap/ScrollTrigger.min.js"></script>
     <script src="vendors/gsap/SplitText.min.js"></script>
     <script src="vendors/lenis/lenis.min.js"></script>
-    <script src="js/zenkai-motion.js"></script>
+    <script src="js/zenkai/core.js"></script>
+    <script src="js/zenkai/shatter.js"></script>
+    <script src="js/zenkai/preloader.js"></script>
+    <script src="js/zenkai/hero.js"></script>
+    <script src="js/zenkai/reveal.js"></script>
+    <script src="js/zenkai/ui.js"></script>
+    <script src="js/zenkai/counters.js"></script>
+    <script src="js/zenkai/transitions.js"></script>
     <script src="js/zenkai-shader.js"></script>
     <script src="js/zenkai-forms.js"></script>
+    <script src="js/zenkai/main.js"></script>
     <script src="js/custom.js"></script>
   </body>
 </html>

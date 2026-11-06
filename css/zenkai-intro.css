@@ -1,0 +1,325 @@
+/*============= Zenkai Sushi: abertura, transicoes e componentes de motion =============*/
+/* Cores do tema: laranja #f77f00, amarelo #ffa62b, azul-escuro #04091e */
+
+/*---------- Capa enquanto o JS carrega (primeiro acesso ou troca de pagina) ----------*/
+html.zk-loading::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #04091e;
+  z-index: 99998;
+  animation: zk-failsafe 0.01s 8s forwards;
+}
+
+html.zk-loading body,
+html.zk-lock body {
+  overflow: hidden;
+}
+
+@keyframes zk-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/*---------- Preloader: poder de luta ----------*/
+.zk-preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  background: #04091e;
+  color: #fff;
+  overflow: hidden;
+}
+
+.zk-preloader.is-shattering {
+  background: transparent;
+  pointer-events: none;
+}
+
+.zk-preloader__stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  will-change: transform;
+}
+
+.zk-preloader__label {
+  font: 500 12px/1 "Poppins", sans-serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #ffa62b;
+  margin-bottom: 14px;
+}
+
+.zk-preloader__count {
+  font: 700 clamp(56px, 14vw, 140px) / 1 "Playfair Display", serif;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(247, 127, 0, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.zk-preloader__phrase {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-58%);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.zk-preloader__phrase span {
+  display: block;
+  font-size: clamp(26px, 7vw, 76px);
+  letter-spacing: 6px;
+  color: #fff;
+}
+
+.zk-preloader__phrase strong {
+  display: block;
+  font-size: clamp(64px, 19vw, 210px);
+  color: #f77f00;
+  text-shadow:
+    0 0 24px rgba(247, 127, 0, 0.7),
+    0 6px 0 #a64b00;
+}
+
+.zk-preloader__orbs {
+  display: flex;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.zk-preloader__flash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, #fff 0%, #ffd27a 30%, #f77f00 70%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.zk-orb {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffd98a, #f77f00 55%, #a64b00);
+  opacity: 0.18;
+  filter: grayscale(1);
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.zk-orb::after {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  line-height: 1;
+  color: #c0392b;
+  text-align: center;
+}
+
+.zk-orb.is-on {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 18px 4px rgba(247, 127, 0, 0.7);
+}
+
+/* rachaduras */
+.zk-cracks {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px #ffa62b);
+}
+
+.zk-cracks path {
+  fill: none;
+  stroke: #fff4d6;
+  stroke-width: 0.28;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* cacos que caem revelando a pagina */
+.zk-shards {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.zk-shard {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d1638 0%, #04091e 55%, #0a0f2a 100%);
+  will-change: transform;
+}
+
+/*---------- Transicao entre paginas ----------*/
+.zk-curtain {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99997;
+  background: #04091e;
+  pointer-events: none;
+}
+
+.zk-curtain__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #f77f00, #ffa62b);
+  box-shadow: 0 0 24px 4px rgba(247, 127, 0, 0.6);
+}
+
+/*---------- Barra de progresso e menu inteligente ----------*/
+.zk-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 99980;
+  background: linear-gradient(90deg, #f77f00, #ffa62b);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.header_area {
+  transition: transform 0.45s ease;
+}
+
+.header_area.zk-nav-hidden {
+  transform: translateY(-140%);
+}
+
+.header_area.navbar_fixed.zk-nav-hidden {
+  transform: translateY(-190px);
+}
+
+/*---------- Brasas do hero ----------*/
+.banner_area .booking_table .zk-embers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.banner_area .booking_table > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/*---------- Faixa em marquee ----------*/
+.zk-marquee {
+  position: relative;
+  overflow: hidden;
+  background: #f77f00;
+  padding: 16px 0;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.zk-marquee__track {
+  display: inline-flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.zk-marquee__track span,
+.zk-marquee__track i {
+  font: 800 clamp(20px, 3vw, 34px) / 1 "Poppins", sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #04091e;
+  padding: 0 22px;
+  font-style: normal;
+}
+
+.zk-marquee__track i {
+  color: #fff;
+  padding: 0 4px;
+}
+
+/*---------- Contadores ----------*/
+.zk-stats {
+  background: #04091e;
+  color: #fff;
+  position: relative;
+}
+
+.zk-stat {
+  padding: 20px 10px;
+  border-left: 1px solid rgba(255, 166, 43, 0.25);
+}
+
+.row > div:first-child .zk-stat {
+  border-left: 0;
+}
+
+.zk-stat strong {
+  display: block;
+  font: 700 clamp(38px, 6vw, 64px) / 1.1 "Playfair Display", serif;
+  color: #f77f00;
+  text-shadow: 0 0 18px rgba(247, 127, 0, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.zk-stat span {
+  display: block;
+  margin-top: 6px;
+  font: 500 12px/1.4 "Poppins", sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #dfe3ee;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header_area {
+    transition: none;
+  }
+}

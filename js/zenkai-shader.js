@@ -39,86 +39,6 @@
     }
 
     /*-------------------------------------------------------------------------------
-	  Aura de ki no banner da home
-	-------------------------------------------------------------------------------*/
-    var AURA = [
-        "precision mediump float;varying vec2 v;uniform float t;uniform vec2 m;uniform float asp;",
-        "float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}",
-        "float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);",
-        "return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}",
-        "float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return s;}",
-        "void main(){",
-        " vec2 uv=v;vec2 p=vec2(uv.x*asp,uv.y);",
-        " float cx=mix(.5,m.x,.55)*asp;",
-        " float d=abs(p.x-cx);",
-        " float flame=fbm(vec2(p.x*2.2,p.y*1.6-t*.55)+vec2(0.,fbm(p*3.+t*.2)));",
-        " float shape=smoothstep(.95,.0,d*1.25+uv.y*.55-flame*.85);",
-        " float pulse=.75+.25*sin(t*2.2);",
-        " vec3 core=vec3(1.,.82,.25);vec3 edge=vec3(.97,.5,0.);",
-        " vec3 col=mix(edge,core,smoothstep(.2,1.,shape))*shape*pulse;",
-        " float glow=exp(-d*2.2)*(1.-uv.y)*.35;",
-        " col+=vec3(.97,.5,0.)*glow;",
-        " col*=.85;",
-        " gl_FragColor=vec4(col,max(col.r,max(col.g,col.b)));",
-        "}"
-    ].join("\n");
-
-    function aura(){
-        var host = document.querySelector(".banner_area .booking_table");
-        if (!host || !document.querySelector(".banner_area .hotel_booking_area")) { return; }
-        // so na home (banner com formulario de reserva e foto do restaurante)
-        if (!document.querySelector(".banner_content")) { return; }
-        var canvas = document.createElement("canvas");
-        canvas.className = "zk-aura";
-        canvas.setAttribute("aria-hidden", "true");
-        var gl = getGl(canvas, { alpha: true, premultipliedAlpha: false, antialias: false });
-        if (!gl) { return; }
-        var pr = program(gl, AURA);
-        if (!pr) { return; }
-        host.insertBefore(canvas, host.querySelector(".container"));
-
-        var uT = gl.getUniformLocation(pr, "t");
-        var uM = gl.getUniformLocation(pr, "m");
-        var uA = gl.getUniformLocation(pr, "asp");
-        var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
-        var visible = true, raf = 0, start = performance.now();
-        var scale = 0.5; // renderiza em meia resolucao: e so um brilho
-
-        function resize(){
-            var w = Math.max(2, Math.round(host.clientWidth * scale));
-            var h = Math.max(2, Math.round(host.clientHeight * scale));
-            canvas.width = w; canvas.height = h;
-            gl.viewport(0, 0, w, h);
-            gl.uniform1f(uA, w / h);
-        }
-        resize();
-        window.addEventListener("resize", resize);
-        window.addEventListener("mousemove", function(e){
-            var r = host.getBoundingClientRect();
-            mouse.tx = (e.clientX - r.left) / r.width;
-            mouse.ty = 1 - (e.clientY - r.top) / r.height;
-        });
-
-        function frame(now){
-            mouse.x += (mouse.tx - mouse.x) * 0.06;
-            mouse.y += (mouse.ty - mouse.y) * 0.06;
-            gl.uniform1f(uT, (now - start) / 1000);
-            gl.uniform2f(uM, mouse.x, mouse.y);
-            gl.clearColor(0, 0, 0, 0);
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-            raf = visible ? requestAnimationFrame(frame) : 0;
-        }
-        if ("IntersectionObserver" in window) {
-            new IntersectionObserver(function(entries){
-                visible = entries[0].isIntersecting;
-                if (visible && !raf) { raf = requestAnimationFrame(frame); }
-            }).observe(host);
-        }
-        raf = requestAnimationFrame(frame);
-    }
-
-    /*-------------------------------------------------------------------------------
 	  Hover com distorcao nas fotos (um unico contexto WebGL compartilhado)
 	-------------------------------------------------------------------------------*/
     var HOVER = [
@@ -229,11 +149,7 @@
     }
 
     function init(){
-        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-            aura();
-            return;
-        }
-        aura();
+        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) { return; }
         hover();
     }
 
