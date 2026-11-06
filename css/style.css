@@ -555,7 +555,9 @@ button:focus {
   font-weight: 400;
 }
 
-.banner_content h2 {
+.banner_content h2,
+
+.banner_content h1 {
   font-size: 60px;
   line-height: 60px;
   font-weight: 700;
@@ -690,7 +692,7 @@ button:focus {
 }
 
 .breadcrumb_area .bg-parallax {
-  background: url("../image/about_banner.jpg") no-repeat scroll center 0 / cover;
+  background: url("../imagensOtimizadas/banner-paginas-combo-bambu-zenkai-sushi.webp") no-repeat scroll center 0 / cover;
   opacity: 0.5;
   z-index: -1;
 }
@@ -735,7 +737,7 @@ button:focus {
 }
 
 .blog_banner .bg-parallax {
-  background: url(../image/banner/banner-1.jpg) no-repeat scroll center center;
+  background: url(../imagensOtimizadas/banner-blog-mesa-sushi-entardecer-zenkai-sushi.webp) no-repeat scroll center center;
 }
 
 .blog_banner .banner_content {
@@ -743,7 +745,9 @@ button:focus {
   margin-top: 106px;
 }
 
-.blog_banner .banner_content h4 {
+.blog_banner .banner_content h4,
+
+.blog_banner .banner_content h1 {
   font-size: 60px;
   line-height: 66px;
   font-weight: bold;
@@ -768,7 +772,7 @@ button:focus {
 }
 
 .blog_banner_two .bg-parallax {
-  background: url(../image/banner/banner-2.jpg) no-repeat scroll center
+  background: url(../imagensOtimizadas/banner-post-salao-izakaya-zenkai-sushi.webp) no-repeat scroll center
     top/cover;
 }
 
@@ -847,7 +851,7 @@ button:focus {
 }
 
 .facilities_area .bg-parallax {
-  background: url("../image/facilites_bg.jpg") no-repeat scroll center 0 / cover;
+  background: url("../imagensOtimizadas/banner-facilidades-amigos-izakaya-zenkai-sushi.webp") no-repeat scroll center 0 / cover;
   opacity: 0.15;
 }
 
@@ -3659,16 +3663,21 @@ h6 {
 
 /*# sourceMappingURL=style.css.map */
 
-/*============= Logo em texto (provisorio) =============*/
-.navbar .logo_h .logo_text {
-  display: inline-block;
-  font:
-    700 26px/80px "Playfair Display",
-    serif;
-  color: #04091e;
-  letter-spacing: 1px;
+/*============= Logo do Zenkai Sushi =============*/
+.navbar .logo_h {
+  display: flex;
+  align-items: center;
+  height: 80px;
 }
 
-.navbar .logo_h .logo_text span {
-  color: #f77f00;
+.navbar .logo_h img {
+  height: 46px;
+  width: auto;
+  max-width: none;
+}
+
+/*============= Fotos de prato responsivas =============*/
+.accomodation_item .hotel_img img {
+  max-width: 100%;
+  height: auto;
 }
