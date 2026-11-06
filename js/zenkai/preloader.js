@@ -80,6 +80,11 @@
         tl.to(flash, { autoAlpha: 1, duration: 0.08 });
         tl.set(count, { display: "none" }, "<");
         tl.set(label, { display: "none" }, "<");
+        // sem o contador as esferas subiriam para o centro, por cima da frase: desce a fileira para logo abaixo dela
+        tl.call(function(){
+            var row = root.querySelector(".zk-preloader__orbs");
+            gsap.set(row, { y: phrase.offsetHeight * 0.42 + 28 + row.offsetHeight / 2 });
+        }, null, "<");
         tl.fromTo(phrase, { autoAlpha: 1, scale: 3.2 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "expo.out", immediateRender: false }, "<");
         tl.to(flash, { autoAlpha: 0, duration: 0.5, ease: "power2.out" }, "<0.08");
         tl.to(stage, { x: 0, y: 0, duration: 0.01 }, "<");

@@ -47,6 +47,17 @@
     // parallax dos fundos: ver js/zenkai-motion.js (GSAP)
 
     $('select').niceSelect();
+    // o nice-select troca o <select> por uma <div>: devolve a semantica para leitores de tela
+    $('.nice-select').each(function(){
+        var el = this, sel = $(el).prev('select');
+        el.setAttribute('role', 'combobox');
+        el.setAttribute('aria-haspopup', 'listbox');
+        el.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-label', sel.attr('aria-label') || sel.attr('name') || 'Seleção');
+        new MutationObserver(function(){
+            el.setAttribute('aria-expanded', el.classList.contains('open') ? 'true' : 'false');
+        }).observe(el, { attributes: true, attributeFilter: ['class'] });
+    });
     // reserva de mesa: data e horario (o restaurante fecha as segundas)
     // o plugin e o smalot (formato dd/mm/yyyy, hh:ii): o formato antigo "DD/MM/YYYY" era lido como nome do dia e do mes por extenso
     $.fn.datetimepicker.dates['pt-BR'] = {

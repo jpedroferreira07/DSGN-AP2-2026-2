@@ -79,7 +79,18 @@
         var items = gsap.utils.toArray("#gallery .gallery_item");
         if (!items.length) { return; }
         var mm = gsap.matchMedia();
-        mm.add("(prefers-reduced-motion: no-preference)", function(){
+        // celular: as fotos so sobem e aparecem (cair de -260px por cima do titulo atrapalhava a leitura numa coluna so)
+        mm.add("(prefers-reduced-motion: no-preference) and (max-width: 767px)", function(){
+            gsap.set(items, { autoAlpha: 0, y: 50 });
+            ScrollTrigger.batch(items, {
+                start: "top 92%",
+                once: true,
+                onEnter: function(batch){
+                    gsap.to(batch, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out", stagger: 0.1, overwrite: true });
+                }
+            });
+        });
+        mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px)", function(){
             gsap.set(items, { autoAlpha: 0, y: -260, rotation: function(i){ return (i % 2 ? 1 : -1) * 4; } });
             ScrollTrigger.batch(items, {
                 start: "top 92%",

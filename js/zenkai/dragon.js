@@ -78,7 +78,7 @@
         emblem.style.cssText = "left:" + ox + "px;top:" + oy + "px;width:" + S + "px;height:" + S + "px;";
         var art = el("div", "zk-emblem__art", emblem);
         var img = el("img", "zk-emblem__img", art);
-        img.src = IMG_DRAGON; img.alt = ""; img.draggable = false;
+        img.src = IMG_DRAGON; img.alt = "Shenlong enrolado em volta das sete esferas do dragão"; img.title = "Shenlong - Zenkai Sushi"; img.draggable = false;
 
         var eyes = EYES.map(function(p){
             var e = el("span", "zk-eye", emblem);

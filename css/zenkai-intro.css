@@ -1095,3 +1095,239 @@ textarea.form-control,
   pointer-events: none;
   z-index: 1;
 }
+
+/*---------- Acessibilidade, usabilidade no celular e contraste ----------*/
+/* link "Ir para o conteudo": escondido ate receber foco pelo teclado */
+.zk-skip {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: 100001;
+  padding: 12px 18px;
+  background: #04091e;
+  color: #fff;
+  border-radius: 10px;
+  font: 600 14px/1.2 "Poppins", sans-serif;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.zk-skip:focus {
+  top: 12px;
+  outline: 3px solid #f77f00;
+}
+
+#conteudo:focus {
+  outline: none;
+}
+
+/* foco visivel para quem navega pelo teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.nice-select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #f77f00;
+  outline-offset: 3px;
+}
+
+.footer-area a:focus-visible,
+.zk-kame a:focus-visible {
+  outline-color: #ffa62b;
+}
+
+/* imagens com width/height no HTML mantem a proporcao e nunca passam da coluna */
+img:where([width][height]) {
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar .logo_h img {
+  max-width: none;
+}
+
+/* eyebrow do hero (era um h6 antes do h1) */
+.banner_content .banner_eyebrow {
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-weight: 400;
+}
+
+/* botoes laranja: texto escuro (o branco dava 2,6:1 de contraste) */
+.theme_btn,
+.theme_btn:hover,
+.button_hover:hover {
+  color: #04091e;
+}
+
+.theme_btn_two,
+.theme_btn_two:hover {
+  color: #fff;
+}
+
+/* precos dos pratos e estrelas das avaliacoes */
+.accomodation_item h5,
+.accomodation_item h5 small {
+  color: #b35400;
+}
+
+.testimonial_slider .testimonial_item .star i {
+  color: #d96a00;
+  font-size: 14px;
+}
+
+/* rodape escuro: cinzas mais claros (o #666d80 do site claro nao serve sobre azul escuro) */
+.footer-area,
+.footer-area p,
+.footer-area li,
+.footer-area a,
+.single-footer-widget ul li a,
+.footer-text,
+.footer-bottom p {
+  color: #a9b1c7;
+}
+
+.footer-area a:hover,
+.footer-area a:focus-visible {
+  color: #ffa62b;
+}
+
+.footer-area .footer_title {
+  color: #fff;
+}
+
+/* alvos de toque maiores no celular (minimo ~44px) */
+@media (max-width: 991px), (pointer: coarse) {
+  .single-footer-widget ul li a,
+  .contact_info .info_item a,
+  .breadcrumb a,
+  .page-cover-tittle + .breadcrumb a {
+    display: inline-block;
+    padding: 10px 4px;
+  }
+
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .tag_btn,
+  .post_tag a {
+    display: inline-block;
+    min-height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+  }
+
+  .testimonial_slider .owl-dots .owl-dot {
+    margin: 0 8px;
+    padding: 10px;
+    background-clip: content-box;
+    box-sizing: content-box;
+  }
+}
+
+/* subtitulo da secao sobre foto escura e credito do rodape */
+.facilities_area .section_title p {
+  color: #c9cfe0;
+}
+
+.footer-bottom .footer-text a {
+  display: inline-block;
+  padding: 10px 4px;
+}
+
+/* preco do prato: era um h5 (pulava nivel de titulo), agora e um paragrafo com o mesmo visual */
+.accomodation_item .price {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #b35400;
+  font-family: "Poppins", sans-serif;
+}
+
+.accomodation_item .price small {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+/* blog: paginacao, botoes laranja e datas com contraste suficiente */
+.page-link {
+  color: #5f6376;
+}
+
+.page-item.active .page-link,
+.page-link:hover {
+  color: #04091e;
+}
+
+.primary-btn,
+.primary-btn:hover {
+  color: #04091e;
+}
+
+.comments-area .date,
+.comments-area .comment-list .single-comment .date,
+.single-post-area .date {
+  color: #5f6376;
+}
+
+@media (max-width: 991px), (pointer: coarse) {
+  .blog_info li a,
+  .cat-list li a,
+  .post_tag a,
+  .blog_right_sidebar .post_category_widget .cat-list a {
+    display: inline-block;
+    padding: 8px 2px;
+  }
+}
+
+.blog-pagination .page-link {
+  color: #5f6376;
+}
+
+.blog-pagination .page-item.active .page-link,
+.blog-pagination .page-link:hover {
+  color: #04091e;
+}
+
+/* titulos dos widgets do blog (fundo laranja): texto escuro; card de categoria clicavel por inteiro */
+.blog_right_sidebar .widget_title {
+  color: #04091e;
+}
+
+.categories_post {
+  position: relative;
+}
+
+.categories_post .categories_text a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* datas e linhas de contato eram h6 (pulavam nivel de titulo); agora sao paragrafos com o mesmo visual */
+.single-recent-blog-post p.date {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.contact_info .info_item .info_line {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #222222;
+  font-weight: 300;
+}

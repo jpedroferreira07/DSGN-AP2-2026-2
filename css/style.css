@@ -89,7 +89,7 @@ body {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  color: #777777;
+  color: #666d80;
 }
 
 section {
@@ -150,7 +150,7 @@ button:focus {
 .section_title p {
   font-size: 14px;
   line-height: 30px;
-  color: #777777;
+  color: #666d80;
   margin-bottom: 0px;
 }
 
@@ -359,7 +359,7 @@ button:focus {
 
 .navbar .menu_nav .nav-item:hover .nav-link,
 .navbar .menu_nav .nav-item.active .nav-link {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .navbar .menu_nav .nav-item.submenu {
@@ -446,7 +446,7 @@ button:focus {
 
 .navbar .menu_nav .nav-item.submenu ul .nav-item:hover .nav-link {
   background: #f0f0f0;
-  color: #52c5fd;
+  color: #b35400;
 }
 
 @media (min-width: 992px) {
@@ -608,27 +608,27 @@ button:focus {
   font-size: 13px;
   line-height: 38px;
   padding: 0px 20px;
-  color: #777777;
+  color: #666d80;
   z-index: 0;
 }
 
 .book_tabel_item .form-group .input-group .form-control.placeholder {
-  color: #777777;
+  color: #666d80;
 }
 
 .book_tabel_item .form-group .input-group .form-control:-moz-placeholder {
-  color: #777777;
+  color: #666d80;
 }
 
 .book_tabel_item .form-group .input-group .form-control::-moz-placeholder {
-  color: #777777;
+  color: #666d80;
 }
 
 .book_tabel_item
   .form-group
   .input-group
   .form-control::-webkit-input-placeholder {
-  color: #777777;
+  color: #666d80;
 }
 
 .book_tabel_item .form-group .input-group .form-control:focus {
@@ -647,7 +647,7 @@ button:focus {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  color: #777777;
+  color: #666d80;
   z-index: 2;
 }
 
@@ -662,14 +662,14 @@ button:focus {
   font-size: 13px;
   line-height: 40px;
   height: 40px;
-  color: #777;
+  color: #666d80;
 }
 
 .book_tabel_item .nice-select:after {
   content: "\e874";
   font-family: "Linearicons-Free";
   font-size: 13px;
-  color: #777777;
+  color: #666d80;
   border: 0px;
   top: 0;
   margin-top: 0px;
@@ -816,7 +816,7 @@ button:focus {
 .accomodation_item h5 {
   font-size: 24px;
   line-height: 28px;
-  color: #52c5fd;
+  color: #b35400;
   font-weight: 600;
   margin-bottom: 0px;
 }
@@ -958,7 +958,7 @@ button:focus {
 }
 
 .testimonial_slider .testimonial_item p {
-  color: #8c8d9e;
+  color: #5f6376;
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0px;
@@ -973,7 +973,7 @@ button:focus {
 }
 
 .testimonial_slider .testimonial_item .sec_h4:hover {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .testimonial_slider .testimonial_item .star a {
@@ -1031,7 +1031,7 @@ button:focus {
 }
 
 .single-recent-blog-post .details .sec_h4:hover {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .single-recent-blog-post .date {
@@ -1153,14 +1153,14 @@ button:focus {
 }
 
 .blog_info .post_tag a:hover {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .blog_info .blog_meta li a {
   font:
     300 14px/20px "Poppins",
     sans-serif;
-  color: #777777;
+  color: #666d80;
   vertical-align: middle;
   padding-bottom: 12px;
   display: inline-block;
@@ -1176,7 +1176,7 @@ button:focus {
 }
 
 .blog_info .blog_meta li a:hover {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .blog_post img {
@@ -1198,7 +1198,7 @@ button:focus {
 }
 
 .blog_details h2:hover {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .blog_details p {
@@ -1319,7 +1319,7 @@ button:focus {
 }
 
 .blog_right_sidebar .author_widget .social_icon a:hover {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .blog_right_sidebar .popular_post_widget .post_item .media-body {
@@ -1342,7 +1342,7 @@ button:focus {
 }
 
 .blog_right_sidebar .popular_post_widget .post_item .media-body h3:hover {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .blog_right_sidebar .popular_post_widget .post_item .media-body p {
@@ -1366,7 +1366,7 @@ button:focus {
 .blog_right_sidebar .post_category_widget .cat-list li a {
   font-size: 14px;
   line-height: 20px;
-  color: #777;
+  color: #666d80;
 }
 
 .blog_right_sidebar .post_category_widget .cat-list li a p {
@@ -1382,7 +1382,7 @@ button:focus {
 }
 
 .blog_right_sidebar .post_category_widget .cat-list li:hover a {
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .blog_right_sidebar .newsletter_widget {
@@ -1579,7 +1579,7 @@ button:focus {
   box-shadow: -20.84px 21.58px 30px 0px rgba(176, 176, 176, 0.1);
   font-size: 14px;
   line-height: 24px;
-  color: #777;
+  color: #666d80;
   font-style: italic;
 }
 
@@ -1752,7 +1752,7 @@ button:focus {
 }
 
 .comments-area .comment {
-  color: #777777;
+  color: #666d80;
   margin-bottom: 0px;
 }
 
@@ -1819,7 +1819,7 @@ button:focus {
   border-radius: 0px;
   width: 100%;
   font-size: 14px;
-  color: #777777;
+  color: #666d80;
   border: 1px solid transparent;
 }
 
@@ -1836,25 +1836,25 @@ button:focus {
 .comment-form ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-size: 13px;
-  color: #777;
+  color: #666d80;
 }
 
 .comment-form ::-moz-placeholder {
   /* Firefox 19+ */
   font-size: 13px;
-  color: #777;
+  color: #666d80;
 }
 
 .comment-form :-ms-input-placeholder {
   /* IE 10+ */
   font-size: 13px;
-  color: #777;
+  color: #666d80;
 }
 
 .comment-form :-moz-placeholder {
   /* Firefox 18- */
   font-size: 13px;
-  color: #777;
+  color: #666d80;
 }
 
 .comment-form .primary-btn {
@@ -2158,7 +2158,7 @@ button:focus {
 .primary-border {
   background: transparent;
   border: 1px solid #52c5fd;
-  color: #52c5fd;
+  color: #b35400;
 }
 
 .primary-border:before {
@@ -2411,7 +2411,7 @@ h6 {
 .typography h4,
 .typography h5,
 .typography h6 {
-  color: #777777;
+  color: #666d80;
 }
 
 .button-area {
@@ -2840,7 +2840,7 @@ h6 {
 
 .ordered-list li span {
   font-weight: 300;
-  color: #777777;
+  color: #666d80;
 }
 
 .ordered-list-alpha li {
@@ -2853,7 +2853,7 @@ h6 {
 
 .ordered-list-alpha li span {
   font-weight: 300;
-  color: #777777;
+  color: #666d80;
 }
 
 .ordered-list-roman li {
@@ -2866,7 +2866,7 @@ h6 {
 
 .ordered-list-roman li span {
   font-weight: 300;
-  color: #777777;
+  color: #666d80;
 }
 
 .single-input {
@@ -3532,7 +3532,7 @@ h6 {
 .single-footer-widget ul li a {
   line-height: 25px;
   display: inline-block;
-  color: #777;
+  color: #666d80;
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;

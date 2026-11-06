@@ -33,7 +33,7 @@ O site é publicado via GitHub Pages.
 
 Também foram adaptadas `about.html` (Sobre nós) e `contact.html` (Contato). O destaque da página do blog leva ao post em `blog-single.html`.
 
-No template, a página do Cardápio se chamava `accomodation.html`. Por causa do SEO, ela foi renomeada para `cardapio.html`, e o arquivo `accomodation.html` ficou apenas como redirecionamento para o nome novo.
+No template, a página do Cardápio se chamava `accomodation.html`. Por causa do SEO, o endereço principal passou a ser `cardapio.html`, mas o `accomodation.html` continua no projeto com o mesmo conteúdo completo, como pede o briefing. Ele aponta o `canonical` para `cardapio.html` para os buscadores não tratarem as duas páginas como conteúdo duplicado.
 
 ## Estrutura de pastas
 
