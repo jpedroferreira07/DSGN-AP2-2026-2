@@ -1,0 +1,1333 @@
+/*============= Zenkai Sushi: abertura, transicoes e componentes de motion =============*/
+/* Cores do tema: laranja #f77f00, amarelo #ffa62b, azul-escuro #04091e */
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@500;600&display=swap");
+
+/*---------- Capa enquanto o JS carrega (primeiro acesso ou troca de pagina) ----------*/
+html.zk-loading::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #04091e;
+  z-index: 99998;
+  animation: zk-failsafe 0.01s 8s forwards;
+}
+
+html.zk-loading body,
+html.zk-lock body {
+  overflow: hidden;
+}
+
+@keyframes zk-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/*---------- Preloader: poder de luta ----------*/
+.zk-preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  background: #04091e;
+  color: #fff;
+  overflow: hidden;
+}
+
+.zk-preloader.is-shattering {
+  background: transparent;
+  pointer-events: none;
+}
+
+.zk-preloader__stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  will-change: transform;
+}
+
+.zk-preloader__label {
+  font: 500 12px/1 "Poppins", sans-serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #ffa62b;
+  margin-bottom: 14px;
+}
+
+.zk-preloader__count {
+  font: 700 clamp(56px, 14vw, 140px) / 1 "Playfair Display", serif;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(247, 127, 0, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.zk-preloader__phrase {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-58%);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.zk-preloader__phrase span {
+  display: block;
+  font-size: clamp(26px, 7vw, 76px);
+  letter-spacing: 6px;
+  color: #fff;
+}
+
+.zk-preloader__phrase strong {
+  display: block;
+  font-size: clamp(64px, 19vw, 210px);
+  color: #f77f00;
+  text-shadow:
+    0 0 24px rgba(247, 127, 0, 0.7),
+    0 6px 0 #a64b00;
+}
+
+.zk-preloader__orbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 34px;
+}
+
+.zk-preloader__flash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, #fff 0%, #ffd27a 30%, #f77f00 70%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.zk-orb {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffd98a, #f77f00 55%, #a64b00);
+  opacity: 0.18;
+  filter: grayscale(1);
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.zk-orb i {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-style: normal;
+  font-size: 12px;
+  line-height: 1;
+  color: #b3261e;
+}
+
+@media (max-width: 400px) {
+  .zk-preloader__orbs {
+    gap: 8px;
+  }
+
+  .zk-orb {
+    width: 36px;
+    height: 36px;
+  }
+
+  .zk-orb i {
+    font-size: 9px;
+  }
+}
+
+.zk-orb.is-on {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 18px 4px rgba(247, 127, 0, 0.7);
+}
+
+/* rachaduras */
+.zk-cracks {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px #ffa62b);
+}
+
+.zk-cracks path {
+  fill: none;
+  stroke: #fff4d6;
+  stroke-width: 0.28;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* cacos que caem revelando a pagina */
+.zk-shards {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.zk-shard {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d1638 0%, #04091e 55%, #0a0f2a 100%);
+  will-change: transform;
+}
+
+/*---------- Transicao entre paginas ----------*/
+.zk-curtain {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99997;
+  background: #04091e;
+  pointer-events: none;
+}
+
+.zk-curtain__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #f77f00, #ffa62b);
+  box-shadow: 0 0 24px 4px rgba(247, 127, 0, 0.6);
+}
+
+/*---------- Barra de progresso e menu inteligente ----------*/
+.zk-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 99980;
+  background: linear-gradient(90deg, #f77f00, #ffa62b);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.header_area {
+  transition: transform 0.45s ease;
+}
+
+.header_area.zk-nav-hidden {
+  transform: translateY(-140%);
+}
+
+.header_area.navbar_fixed.zk-nav-hidden {
+  transform: translateY(-190px);
+}
+
+/*---------- Brasas do hero ----------*/
+.banner_area .booking_table .zk-embers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.banner_area .booking_table > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* a lista aberta dos selects do hero (Adultos, Criancas, Mesas) passa por cima da faixa em marquee, que vem logo abaixo */
+.banner_area {
+  z-index: 3;
+}
+
+/*---------- Kamehameha: o Goku dispara e as palavras correm dentro do feixe ----------*/
+.zk-kame {
+  --kh: clamp(210px, 24vw, 320px);   /* altura da faixa; todo o resto escala a partir dela */
+  position: relative;
+  height: var(--kh);
+  overflow: hidden;
+  background: radial-gradient(ellipse at 24% 50%, #0b3a7a 0%, #061a44 40%, #04091e 78%);
+  z-index: 2;
+}
+
+.zk-kame__speed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: var(--kh);
+  width: calc(var(--kh) * 1.2308);
+  z-index: 1;
+}
+
+/* Goku: 88% da altura da faixa; as maos (borda direita, 35% da altura da imagem) ficam a 44% da altura da faixa */
+.zk-kame__goku {
+  position: absolute;
+  left: 0;
+  top: calc(var(--kh) * 0.132);
+  height: calc(var(--kh) * 0.88);
+  width: auto;
+  z-index: 3;
+  user-select: none;
+  filter: drop-shadow(0 0 10px rgba(56, 182, 255, 0.45));
+}
+
+/* feixe: nasce nas maos do Goku (80% da altura da faixa a partir da esquerda) e vai ate a borda da tela */
+.zk-kame__beam {
+  position: absolute;
+  left: calc(var(--kh) * 0.8);
+  right: 0;
+  top: calc(var(--kh) * -0.02);
+  height: calc(var(--kh) * 0.92);
+  z-index: 2;
+  filter: drop-shadow(0 0 18px rgba(56, 182, 255, 0.95)) drop-shadow(0 0 46px rgba(31, 143, 255, 0.6));
+  animation: zk-kame-glow 1.2s ease-in-out infinite;
+}
+
+/* silhueta serrilhada, branca no centro e azul nas bordas */
+.zk-kame__flame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  background:
+    radial-gradient(ellipse at 0% 50%, #ffffff 0%, rgba(255, 255, 255, 0) 40%),
+    linear-gradient(180deg, #1f8fff 0%, #6cc8ff 22%, #ffffff 42%, #ffffff 58%, #6cc8ff 78%, #1f8fff 100%);
+  clip-path: polygon(0% 50%, 3% 44%, 5% 41%, 8% 36%, 10% 38%, 13% 28%, 16% 30%, 19% 20%, 22% 22%, 25% 12%, 28% 15%, 31% 6%, 34% 9%, 37% 2%, 40% 6%, 43% 0%, 47% 4%, 51% 0%, 55% 5%, 59% 0%, 63% 4%, 67% 0%, 72% 5%, 76% 0%, 81% 4%, 86% 0%, 91% 4%, 96% 0%, 100% 2%, 100% 98%, 96% 100%, 91% 96%, 86% 100%, 81% 96%, 76% 100%, 72% 95%, 67% 100%, 63% 96%, 59% 100%, 55% 95%, 51% 100%, 47% 96%, 43% 100%, 40% 94%, 37% 98%, 34% 91%, 31% 94%, 28% 85%, 25% 88%, 22% 78%, 19% 80%, 16% 70%, 13% 72%, 10% 62%, 8% 64%, 5% 59%, 3% 56%, 0% 50%);
+}
+
+/* faixas de luz correndo pelo feixe */
+.zk-kame__flame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(100deg, transparent 0 130px, rgba(130, 205, 255, 0.55) 130px 138px, transparent 138px 260px);
+  animation: zk-kame-streak 0.8s linear infinite;
+  pointer-events: none;
+}
+
+.zk-kame .zk-marquee__track {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  margin-left: calc(var(--kh) * 0.45);
+  will-change: transform;
+}
+
+.zk-kame .zk-marquee__track span,
+.zk-kame .zk-marquee__track i {
+  font: 400 calc(var(--kh) * 0.3) / 1 "Bangers", "Poppins", sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #052a52;
+  padding: 0 0.35em;
+  font-style: normal;
+}
+
+.zk-kame .zk-marquee__track i {
+  color: #1f8fff;
+  padding: 0 0.1em;
+}
+
+.zk-kame__orb {
+  position: absolute;
+  left: calc(var(--kh) * 0.8);
+  top: calc(var(--kh) * 0.44);
+  width: calc(var(--kh) * 0.26);
+  height: calc(var(--kh) * 0.26);
+  margin: calc(var(--kh) * -0.13) 0 0 calc(var(--kh) * -0.13);
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #e3f7ff 45%, #38b6ff 100%);
+  box-shadow: 0 0 24px 8px rgba(95, 208, 255, 0.85), 0 0 60px 20px rgba(31, 143, 255, 0.5);
+  z-index: 4;
+  animation: zk-kame-orb 0.6s ease-in-out infinite;
+}
+
+@keyframes zk-kame-orb {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes zk-kame-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 18px rgba(56, 182, 255, 0.95)) drop-shadow(0 0 46px rgba(31, 143, 255, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 26px rgba(120, 210, 255, 1)) drop-shadow(0 0 64px rgba(31, 143, 255, 0.8));
+  }
+}
+
+@keyframes zk-kame-streak {
+  to {
+    background-position: 260px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zk-kame__beam,
+  .zk-kame__flame::after,
+  .zk-kame__orb {
+    animation: none;
+  }
+}
+
+/*---------- Contadores ----------*/
+.zk-stats {
+  background: #04091e;
+  color: #fff;
+  position: relative;
+}
+
+.zk-stat {
+  padding: 20px 10px;
+  border-left: 1px solid rgba(255, 166, 43, 0.25);
+}
+
+.row > div:first-child .zk-stat {
+  border-left: 0;
+}
+
+.zk-stat strong {
+  display: block;
+  font: 700 clamp(38px, 6vw, 64px) / 1.1 "Playfair Display", serif;
+  color: #f77f00;
+  text-shadow: 0 0 18px rgba(247, 127, 0, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.zk-stat span {
+  display: block;
+  margin-top: 6px;
+  font: 500 12px/1.4 "Poppins", sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #dfe3ee;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header_area {
+    transition: none;
+  }
+}
+
+/*---------- Emblema do Shenlong (F5 e troca de pagina) ----------*/
+.zk-dragon {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.zk-curtain {
+  background: radial-gradient(circle at 50% 50%, #0d1638 0%, #04091e 70%);
+}
+
+.zk-emblem {
+  position: absolute;
+}
+
+/* revelacao do centro para fora: --r (0..100) abre a mascara, --g (px) e o brilho dourado */
+.zk-emblem__art {
+  --r: 0;
+  --g: 0;
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 calc(var(--r) * 0.8%), transparent calc(var(--r) * 0.8% + 22%));
+  mask-image: radial-gradient(circle at 50% 50%, #000 calc(var(--r) * 0.8%), transparent calc(var(--r) * 0.8% + 22%));
+  will-change: opacity, transform;
+}
+
+.zk-emblem__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 calc(var(--g) * 1px) rgba(255, 166, 43, 0.85));
+  user-select: none;
+}
+
+/* olhos: brilho vermelho */
+.zk-eye {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ff4b2b 18%, rgba(255, 0, 0, 0.55) 40%, rgba(255, 0, 0, 0) 70%);
+  mix-blend-mode: screen;
+  box-shadow: 0 0 18px 6px rgba(255, 30, 20, 0.55);
+}
+
+/* esferas: sprite da arte original + brilho */
+.zk-ball {
+  position: absolute;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.zk-trail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*---------- Campos de reserva: data, horario e listas (index e cardapio) ----------*/
+/* Paleta: fundo #04091e / #0b1230, laranja #f77f00 e #ffa62b, texto #dfe3ee */
+.book_tabel_item .form-group .input-group .form-control,
+.book_tabel_item .nice-select {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #dfe3ee;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.book_tabel_item .form-group .input-group .form-control::placeholder {
+  color: #8d96b2;
+}
+
+.book_tabel_item .form-group .input-group .form-control:hover,
+.book_tabel_item .nice-select:hover {
+  border-color: rgba(247, 127, 0, 0.55);
+}
+
+.book_tabel_item .form-group .input-group .form-control:focus,
+.book_tabel_item .nice-select.open,
+.book_tabel_item .nice-select:focus {
+  border-color: #f77f00;
+  box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.22);
+  background: rgba(247, 127, 0, 0.05);
+}
+
+.book_tabel_item .form-group .input-group .input-group-addon {
+  color: #ffa62b;
+}
+
+/* seta: chevron desenhado em CSS que gira ao abrir */
+.book_tabel_item .nice-select::after {
+  content: "";
+  font-family: inherit;
+  width: 7px;
+  height: 7px;
+  border: 0;
+  border-right: 2px solid #ffa62b;
+  border-bottom: 2px solid #ffa62b;
+  top: 50%;
+  margin-top: -6px;
+  right: 18px;
+  transform: rotate(45deg);
+  transform-origin: 66% 66%;
+  transition: transform 0.2s ease;
+}
+
+.book_tabel_item .nice-select.open::after {
+  transform: rotate(-135deg);
+}
+
+/* lista aberta */
+.book_tabel_item .nice-select .list {
+  width: 100%;
+  min-width: 190px;
+  margin-top: 8px;
+  padding: 6px;
+  background: #0b1230;
+  border: 1px solid rgba(255, 166, 43, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6);
+}
+
+.book_tabel_item .nice-select .option {
+  min-height: 38px;
+  line-height: 38px;
+  padding: 0 14px;
+  border-radius: 9px;
+  color: #dfe3ee;
+  font-size: 13px;
+  font-weight: 400;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.book_tabel_item .nice-select .option:hover,
+.book_tabel_item .nice-select .option.focus,
+.book_tabel_item .nice-select .option.selected.focus {
+  background: rgba(247, 127, 0, 0.18);
+  color: #fff;
+}
+
+.book_tabel_item .nice-select .option.selected {
+  color: #ffa62b;
+  font-weight: 600;
+}
+
+.book_tabel_item .nice-select .option.selected::after {
+  content: "\2713";
+  float: right;
+  font-weight: 700;
+}
+
+/* primeira opcao = titulo da lista (ex.: "Criancas"): pequeno, em maiusculas, sem marcar como escolhida */
+.book_tabel_item .nice-select .option:first-child,
+.book_tabel_item .nice-select .option.disabled {
+  min-height: 30px;
+  line-height: 30px;
+  background: transparent;
+  color: #8d96b2;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.book_tabel_item .nice-select .option:first-child.selected,
+.book_tabel_item .nice-select .option:first-child.selected.focus {
+  background: transparent;
+  color: #8d96b2;
+}
+
+.book_tabel_item .nice-select .option:first-child.selected::after {
+  content: none;
+}
+
+.book_tabel_item .nice-select .option.disabled {
+  cursor: default;
+}
+
+/* calendario e relogio (bootstrap-datetimepicker) */
+.datetimepicker.dropdown-menu {
+  min-width: 300px;
+  margin-top: 8px;
+  padding: 14px;
+  background: #0b1230;
+  border: 1px solid rgba(255, 166, 43, 0.3);
+  border-radius: 18px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.65);
+  color: #e9edf8;
+  font-family: "Poppins", sans-serif;
+}
+
+.datetimepicker.dropdown-menu::before,
+.datetimepicker.dropdown-menu::after {
+  display: none;
+}
+
+.datetimepicker table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 3px;
+}
+
+.datetimepicker table th,
+.datetimepicker table td {
+  text-align: center;
+  border-radius: 10px;
+  color: #e9edf8;
+}
+
+.datetimepicker table th.switch {
+  padding: 8px 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.datetimepicker table th.prev,
+.datetimepicker table th.next {
+  width: 38px;
+  color: #ffa62b;
+  cursor: pointer;
+}
+
+.datetimepicker table th.switch:hover,
+.datetimepicker table th.prev:hover,
+.datetimepicker table th.next:hover,
+.datetimepicker table tfoot th.today:hover,
+.datetimepicker table tfoot th.clear:hover {
+  background: rgba(247, 127, 0, 0.18);
+}
+
+.datetimepicker table th.dow {
+  padding: 8px 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffa62b;
+}
+
+.datetimepicker table tr td.day {
+  width: 38px;
+  height: 38px;
+  font-size: 13px;
+  border-radius: 50%;
+  color: #e9edf8;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.datetimepicker table tr td.day.old,
+.datetimepicker table tr td.day.new {
+  color: #5d6788;
+}
+
+.datetimepicker table tr td.day:hover,
+.datetimepicker table tr td span:hover {
+  background: rgba(247, 127, 0, 0.22);
+  color: #fff;
+}
+
+/* hoje: so um anel laranja */
+.datetimepicker table tr td.today,
+.datetimepicker table tr td.today:hover {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 1.5px #f77f00;
+}
+
+/* dia escolhido */
+.datetimepicker table tr td.active,
+.datetimepicker table tr td.active:hover,
+.datetimepicker table tr td span.active,
+.datetimepicker table tr td span.active:hover {
+  background: linear-gradient(135deg, #f77f00, #ffa62b);
+  color: #04091e;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(247, 127, 0, 0.4);
+  text-shadow: none;
+}
+
+/* dias fechados (segunda) e horarios indisponiveis */
+.datetimepicker table tr td.disabled,
+.datetimepicker table tr td.disabled:hover,
+.datetimepicker table tr td span.disabled,
+.datetimepicker table tr td span.disabled:hover {
+  background: transparent;
+  color: #4a5272;
+  text-decoration: line-through;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* horas, minutos, meses e anos: botoes grandes em grade */
+.datetimepicker table tr td span {
+  display: inline-block;
+  width: calc(25% - 6px);
+  height: 44px;
+  margin: 3px;
+  line-height: 44px;
+  border-radius: 12px;
+  color: #e9edf8;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.datetimepicker table tfoot th {
+  padding: 8px;
+  color: #ffa62b;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 400px) {
+  .datetimepicker.dropdown-menu {
+    min-width: 270px;
+    padding: 10px;
+  }
+
+  .datetimepicker table tr td.day {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* horario: o restaurante abre de terca a domingo, das 12h as 23h (ultima reserva as 22h); o cabecalho com a data sai porque a data ja foi escolhida */
+.datetimepicker-hours td span.hour:nth-child(-n + 12),
+.datetimepicker-hours td span.hour:nth-child(24) {
+  display: none;
+}
+
+.datetimepicker-hours thead,
+.datetimepicker-minutes thead {
+  display: none;
+}
+
+/*---------- Menu do topo: Oswald maior, cabecalho mais compacto e hover laranja ----------*/
+.navbar .logo_h {
+  height: 72px;
+}
+
+.navbar .logo_h img {
+  height: 40px;
+}
+
+.navbar .menu_nav .nav-item .nav-link {
+  position: relative;
+  font: 500 19px/72px "Oswald", "Poppins", sans-serif;
+  letter-spacing: 0.05em;
+  color: #1b1f33;
+  transition: color 0.2s ease;
+}
+
+.navbar .menu_nav .nav-item + li {
+  margin-left: 38px;
+}
+
+/* sublinhado laranja que cresce da esquerda */
+.navbar .menu_nav .nav-item .nav-link::after {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  height: 3px;
+  border-radius: 3px;
+  background: #f77f00;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+/* texto em laranja escuro (contraste 5:1 sobre o branco); o laranja vivo fica so no sublinhado */
+.navbar .menu_nav .nav-item:hover > .nav-link,
+.navbar .menu_nav .nav-item.active > .nav-link {
+  color: #b35400;
+}
+
+.navbar .menu_nav .nav-item:hover > .nav-link::after,
+.navbar .menu_nav .nav-item.active > .nav-link::after {
+  transform: scaleX(1);
+}
+
+/* itens do submenu (Blog): mesma fonte, sem sublinhado */
+.navbar .menu_nav .nav-item.submenu ul .nav-item .nav-link {
+  font: 500 16px/46px "Oswald", "Poppins", sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.navbar .menu_nav .nav-item.submenu ul .nav-item .nav-link::after {
+  display: none;
+}
+
+.navbar .menu_nav .nav-item.submenu ul .nav-item:hover .nav-link {
+  color: #b35400;
+}
+
+@media (max-width: 991px) {
+  .navbar .menu_nav .nav-item .nav-link {
+    font-size: 18px;
+    line-height: 44px;
+  }
+
+  .navbar .menu_nav .nav-item .nav-link::after {
+    display: none;
+  }
+
+  .navbar .menu_nav .nav-item.submenu ul .nav-item .nav-link {
+    line-height: 40px;
+  }
+}
+
+/*---------- Cantos arredondados: painel de reserva e botoes ----------*/
+.hotel_booking_table {
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.button_hover {
+  border-radius: 10px;
+}
+
+@media (max-width: 575px) {
+  .hotel_booking_table {
+    border-radius: 16px;
+  }
+}
+
+/*---------- Cantos arredondados no site todo (16px em cards e fotos, 10px em campos e botoes) ----------*/
+/* cards */
+.facilities_item,
+.testimonial_item,
+.single_sidebar_widget,
+.single-sidebar-widget,
+.categories_post,
+.mapBox {
+  border-radius: 16px;
+}
+
+.categories_post,
+.mapBox,
+.mapBox iframe {
+  overflow: hidden;
+}
+
+.single-comment,
+.comment,
+.post_item {
+  border-radius: 12px;
+}
+
+/* fotos */
+.hotel_img,
+.hotel_img img,
+.gallery_img,
+.gallery_img img,
+.categories_post img,
+.about_history_area img.img-fluid,
+.single-recent-blog-post .thumb img,
+.feature-img img,
+.blog_post > img,
+.single-post .col-6 img,
+.mapBox iframe {
+  border-radius: 16px;
+}
+
+.hotel_img,
+.gallery_img {
+  overflow: hidden;
+}
+
+/* campos e botoes */
+.form-control,
+textarea.form-control,
+.contact_form input,
+.contact_form textarea,
+.subscribe_form input,
+.btn,
+.theme_btn,
+.theme_btn_two,
+.white_btn,
+.primary-btn,
+.view_btn,
+.reply-btn,
+.btn-reply,
+.tag_btn,
+.post_tag a,
+.sub-btn,
+.page-item .page-link {
+  border-radius: 10px;
+}
+
+/* cabecalho: a barra branca ganha cantos de baixo arredondados, e o submenu tambem */
+.navbar {
+  border-radius: 0 0 16px 16px;
+}
+
+.header_area.navbar_fixed {
+  border-radius: 0 0 18px 18px;
+}
+
+.navbar .menu_nav .nav-item.submenu ul {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media (max-width: 575px) {
+  .facilities_item,
+  .testimonial_item,
+  .single_sidebar_widget,
+  .hotel_img,
+  .hotel_img img,
+  .gallery_img,
+  .gallery_img img {
+    border-radius: 12px;
+  }
+}
+
+/* newsletter do rodape: campo + botao formam uma peca so, com cantos arredondados nas pontas */
+.subscribe_form {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.subscribe_form .form-control,
+.subscribe_form input,
+.subscribe_form .sub-btn,
+.subscribe_form .btn {
+  border-radius: 0;
+}
+
+/* fotos do Instagram no rodape */
+.instafeed li,
+.instafeed img {
+  border-radius: 10px;
+}
+
+.instafeed li {
+  overflow: hidden;
+}
+
+/*---------- Transicoes suaves entre secoes (degrades no lugar de cortes secos) ----------*/
+/* faixa do Kamehameha: sai do escuro do painel de reserva no topo e se dissolve no branco embaixo */
+.zk-kame::before,
+.zk-kame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.zk-kame::before {
+  top: 0;
+  height: 34%;
+  background: linear-gradient(180deg, #04091e 0%, rgba(4, 9, 30, 0) 100%);
+  z-index: 1;
+}
+
+.zk-kame::after {
+  bottom: -1px;
+  height: calc(42% + 1px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 70%, #fff 100%);
+  z-index: 2;
+}
+
+/* diferenciais (foto escura): entra do branco do cardapio e sai para o branco do "Sobre nos" */
+.facilities_area > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.facilities_area::before,
+.facilities_area::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 110px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.facilities_area::before {
+  top: 0;
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.facilities_area::after {
+  bottom: 0;
+  background: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* estatisticas: faixa azul escura com padrao de ondas japonesas (seigaiha) e filetes laranja em cima e embaixo */
+.zk-stats {
+  background-color: #04091e;
+  background-image:
+    radial-gradient(circle at 50% 100%, transparent 0 40%, rgba(255, 166, 43, 0.16) 41% 46%, transparent 47% 56%, rgba(255, 166, 43, 0.12) 57% 62%, transparent 63%),
+    radial-gradient(circle at 50% 100%, transparent 0 40%, rgba(255, 166, 43, 0.16) 41% 46%, transparent 47% 56%, rgba(255, 166, 43, 0.12) 57% 62%, transparent 63%);
+  background-size: 64px 32px;
+  background-position: 0 0, 32px 16px;
+  border-top: 3px solid #f77f00;
+  border-bottom: 3px solid #f77f00;
+}
+
+/* rodape e topo das paginas internas */
+.footer-area {
+  background: linear-gradient(180deg, #fff 0, #04091e 120px);
+}
+
+.breadcrumb_area > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb_area::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 70px;
+  background: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/*---------- Acessibilidade, usabilidade no celular e contraste ----------*/
+/* link "Ir para o conteudo": escondido ate receber foco pelo teclado */
+.zk-skip {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: 100001;
+  padding: 12px 18px;
+  background: #04091e;
+  color: #fff;
+  border-radius: 10px;
+  font: 600 14px/1.2 "Poppins", sans-serif;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.zk-skip:focus {
+  top: 12px;
+  outline: 3px solid #f77f00;
+}
+
+#conteudo:focus {
+  outline: none;
+}
+
+/* foco visivel para quem navega pelo teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.nice-select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #f77f00;
+  outline-offset: 3px;
+}
+
+.footer-area a:focus-visible,
+.zk-kame a:focus-visible {
+  outline-color: #ffa62b;
+}
+
+/* imagens com width/height no HTML mantem a proporcao e nunca passam da coluna */
+img:where([width][height]) {
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar .logo_h img {
+  max-width: none;
+}
+
+/* eyebrow do hero (era um h6 antes do h1) */
+.banner_content .banner_eyebrow {
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-weight: 400;
+}
+
+/* botoes laranja: texto escuro (o branco dava 2,6:1 de contraste) */
+.theme_btn,
+.theme_btn:hover,
+.button_hover:hover {
+  color: #04091e;
+}
+
+.theme_btn_two,
+.theme_btn_two:hover {
+  color: #fff;
+}
+
+/* precos dos pratos e estrelas das avaliacoes */
+.accomodation_item h5,
+.accomodation_item h5 small {
+  color: #b35400;
+}
+
+.testimonial_slider .testimonial_item .star i {
+  color: #d96a00;
+  font-size: 14px;
+}
+
+/* rodape escuro: cinzas mais claros (o #666d80 do site claro nao serve sobre azul escuro) */
+.footer-area,
+.footer-area p,
+.footer-area li,
+.footer-area a,
+.single-footer-widget ul li a,
+.footer-text,
+.footer-bottom p {
+  color: #a9b1c7;
+}
+
+.footer-area a:hover,
+.footer-area a:focus-visible {
+  color: #ffa62b;
+}
+
+.footer-area .footer_title {
+  color: #fff;
+}
+
+/* alvos de toque maiores no celular (minimo ~44px) */
+@media (max-width: 991px), (pointer: coarse) {
+  .single-footer-widget ul li a,
+  .contact_info .info_item a,
+  .breadcrumb a,
+  .page-cover-tittle + .breadcrumb a {
+    display: inline-block;
+    padding: 10px 4px;
+  }
+
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .tag_btn,
+  .post_tag a {
+    display: inline-block;
+    min-height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+  }
+
+  .testimonial_slider .owl-dots .owl-dot {
+    margin: 0 8px;
+    padding: 10px;
+    background-clip: content-box;
+    box-sizing: content-box;
+  }
+}
+
+/* subtitulo da secao sobre foto escura e credito do rodape */
+.facilities_area .section_title p {
+  color: #c9cfe0;
+}
+
+.footer-bottom .footer-text a {
+  display: inline-block;
+  padding: 10px 4px;
+}
+
+/* preco do prato: era um h5 (pulava nivel de titulo), agora e um paragrafo com o mesmo visual */
+.accomodation_item .price {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #b35400;
+  font-family: "Poppins", sans-serif;
+}
+
+.accomodation_item .price small {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+/* blog: paginacao, botoes laranja e datas com contraste suficiente */
+.page-link {
+  color: #5f6376;
+}
+
+.page-item.active .page-link,
+.page-link:hover {
+  color: #04091e;
+}
+
+.primary-btn,
+.primary-btn:hover {
+  color: #04091e;
+}
+
+.comments-area .date,
+.comments-area .comment-list .single-comment .date,
+.single-post-area .date {
+  color: #5f6376;
+}
+
+@media (max-width: 991px), (pointer: coarse) {
+  .blog_info li a,
+  .cat-list li a,
+  .post_tag a,
+  .blog_right_sidebar .post_category_widget .cat-list a {
+    display: inline-block;
+    padding: 8px 2px;
+  }
+}
+
+.blog-pagination .page-link {
+  color: #5f6376;
+}
+
+.blog-pagination .page-item.active .page-link,
+.blog-pagination .page-link:hover {
+  color: #04091e;
+}
+
+/* titulos dos widgets do blog (fundo laranja): texto escuro; card de categoria clicavel por inteiro */
+.blog_right_sidebar .widget_title {
+  color: #04091e;
+}
+
+.categories_post {
+  position: relative;
+}
+
+.categories_post .categories_text a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* datas e linhas de contato eram h6 (pulavam nivel de titulo); agora sao paragrafos com o mesmo visual */
+.single-recent-blog-post p.date {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.contact_info .info_item .info_line {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #222222;
+  font-weight: 300;
+}

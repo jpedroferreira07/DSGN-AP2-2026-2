@@ -156,7 +156,8 @@
         max-width: 100%;
         width: 100%;
     }
-    .blog_banner .banner_content h4 {
+    .blog_banner .banner_content h4,
+    .blog_banner .banner_content h1 {
         font-size: 48px;
         line-height: 58px;
         margin-bottom: 20px;
@@ -186,7 +187,8 @@
     }
 }
 @media(max-width: 575px){
-	.banner_content h2 {
+	.banner_content h2,
+	.banner_content h1 {
 		font-size: 40px;
 		line-height: 50px;
 	}
@@ -220,7 +222,8 @@
     .header-top .container{
         padding: 0px 15px;
     }
-    .blog_banner .banner_content h4 {
+    .blog_banner .banner_content h4,
+    .blog_banner .banner_content h1 {
         font-size: 36px;
         line-height: 46px;
     }

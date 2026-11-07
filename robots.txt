@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jpedroferreira07.github.io/DSGN-AP2-2026-2/sitemap.xml

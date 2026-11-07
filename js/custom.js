@@ -44,259 +44,64 @@
     }
     testimonialSlider();
     
-    //------- Mailchimp js --------//  
+    // parallax dos fundos: ver js/zenkai-motion.js (GSAP)
 
-    function mailChimp(){
-        $('#mc_embed_signup').find('form').ajaxChimp();
-    }
-    mailChimp();
-    
-    /* ===== Parallax Effect===== */
-	
-	function parallaxEffect() {
-    	$('.bg-parallax').parallax();
-	}
-	parallaxEffect();
-    
-    
     $('select').niceSelect();
-    $('#datetimepicker11,#datetimepicker1').datetimepicker({
-        daysOfWeekDisabled: [0, 6]
+    // o nice-select troca o <select> por uma <div>: devolve a semantica para leitores de tela
+    $('.nice-select').each(function(){
+        var el = this, sel = $(el).prev('select');
+        el.setAttribute('role', 'combobox');
+        el.setAttribute('aria-haspopup', 'listbox');
+        el.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-label', sel.attr('aria-label') || sel.attr('name') || 'Seleção');
+        new MutationObserver(function(){
+            el.setAttribute('aria-expanded', el.classList.contains('open') ? 'true' : 'false');
+        }).observe(el, { attributes: true, attributeFilter: ['class'] });
+    });
+    // reserva de mesa: data e horario (o restaurante fecha as segundas)
+    // o plugin e o smalot (formato dd/mm/yyyy, hh:ii): o formato antigo "DD/MM/YYYY" era lido como nome do dia e do mes por extenso
+    $.fn.datetimepicker.dates['pt-BR'] = {
+        days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+        daysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        daysMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        today: 'Hoje',
+        clear: 'Limpar',
+        suffix: [],
+        meridiem: []
+    };
+    $('#datetimepicker11').datetimepicker({
+        language: 'pt-BR',
+        format: 'dd/mm/yyyy',
+        startView: 2,
+        minView: 2,
+        maxView: 4,
+        autoclose: true,
+        todayHighlight: true,
+        startDate: new Date(),
+        fontAwesome: true,
+        daysOfWeekDisabled: [1],
+        pickerPosition: 'bottom-left'
+    });
+    $('#datetimepicker1').datetimepicker({
+        language: 'pt-BR',
+        format: 'hh:ii',
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        minuteStep: 15,
+        autoclose: true,
+        fontAwesome: true,
+        pickerPosition: 'bottom-left'
     });
     
-     /*---------gallery isotope js-----------*/
-    function galleryMasonry(){
-        if ( $('#gallery').length ){
-            $('#gallery').imagesLoaded( function() {
-              // images have loaded
-                // Activate isotope in container
-                $("#gallery").isotope({
-                    itemSelector: ".gallery_item",
-                    layoutMode: 'masonry',
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear'
-                    }
-                });
-            })
-        }
-    }
-    galleryMasonry();
+    // galeria: o trilho horizontal fica em js/zenkai-motion.js
 	
 	/*----------------------------------------------------*/
     /*  Simple LightBox js
     /*----------------------------------------------------*/
     $('.imageGallery1 .light').simpleLightbox();
     
-    /*----------------------------------------------------*/
-    /*  Google map js
-    /*----------------------------------------------------*/
-    
-    if ( $('#mapBox').length ){
-        var $lat = $('#mapBox').data('lat');
-        var $lon = $('#mapBox').data('lon');
-        var $zoom = $('#mapBox').data('zoom');
-        var $marker = $('#mapBox').data('marker');
-        var $info = $('#mapBox').data('info');
-        var $markerLat = $('#mapBox').data('mlat');
-        var $markerLon = $('#mapBox').data('mlon');
-        var map = new GMaps({
-        el: '#mapBox',
-        lat: $lat,
-        lng: $lon,
-        scrollwheel: false,
-        scaleControl: true,
-        streetViewControl: false,
-        panControl: true,
-        disableDoubleClickZoom: true,
-        mapTypeControl: false,
-        zoom: $zoom,
-            styles: [
-                {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#dcdfe6"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "stylers": [
-                        {
-                            "color": "#808080"
-                        },
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#dcdfe6"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "weight": 1.8
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#d7d7d7"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#ebebeb"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#a7a7a7"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#efefef"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#696969"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#737373"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "labels",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#d6d6d6"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {},
-                {
-                    "featureType": "poi",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#dadada"
-                        }
-                    ]
-                }
-            ]
-        });
-    }
 
 })(jQuery)
