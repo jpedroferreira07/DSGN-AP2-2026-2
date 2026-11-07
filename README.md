@@ -1,25 +1,57 @@
-Thanks for downloading this theme!
+# Zenkai Sushi
 
-## Other Useful Links
+Trabalho **AP2 de Design Gráfico e UX**
 
-**ThemeWagon** is a great source for downloading free HTML templates built with the latest technology.
+Adaptação do template *Royal Master Hotel* para um novo segmento: o **Zenkai Sushi**, um restaurante japonês temático de Dragon Ball em Shibuya, Tóquio (Japão). A estrutura do template foi mantida. Foram trocados logo, favicon, títulos, textos, botões e todas as fotos.
 
-To download free templates, follow this link: https://themewagon.com/theme_tag/free/
+**Integrantes:**
 
-Besides that, you can buy our premium templates for making your web development experience unforgettable.
+- Bernardo Paes Nemirovsky Borges
+- João Pedro Ferreira Afonso
+- Bernardo Machado Borghetti
+- Giovanni Chianello Correia de Melo
 
-Visit the store from here: https://themewagon.com/theme-categories/premium-templates/
+## Como visualizar
 
-Alternatively, here's our top most trending and selling items:
+Abra o arquivo `index.html` no navegador. Não precisa instalar nada.
 
-* [**Sparrow**](https://themewagon.com/themes/sparrow/) - A multipurpose template made with Bootstrap 4.1 and world's finest animation.
-* [**Posh**](https://themewagon.com/themes/posh-html5-bootstrap-4-template/) - Bootstrap 4 template with a myriad number of ready-to-deploy sections. 
-* [**Elixir**](https://themewagon.com/themes/elixir-elegant-html5-bootstrap-template-consultancy-agency-website/) - Bootstrap 4 agency template. Best for smooth animated scrolling. 
-* [**Freya**](https://themewagon.com/themes/bootstrap-4-premium-interior-design-template-freya/) - Interior design template made with Bootstrap 4. 
-* [**Reign Pro**](https://themewagon.com/themes/reign-pro-premium-corporate-agency-html5-template/) - A corporate template with a visually unique design scheme. 
-* [**Boots4**](https://themewagon.com/themes/first-ever-bootstrap-4-template/) - One of the first Bootstrap 4 templates ever made on earth. 
-* [**Hideaway**](https://themewagon.com/themes/hideaway/) - A template for resorts. Built with Bootstrap 4. 
-* [**Baikal**](https://themewagon.com/themes/bootstrap-4-startup-small-business-website-template/) - A smart Bootstrap template for start-up. 
-* [**Mega Discount**](https://themewagon.com/themes/mega-discount-bundle/) - A bundle of 26 HTML5 templates; best value for your money. 
+## Publicação
 
+O site é publicado via GitHub Pages.
 
+* Link do site publicado: https://jpedroferreira07.github.io/DSGN-AP2-2026-2/
+
+## Páginas do briefing
+
+| Página | Arquivo |
+|---|---|
+| Início | `index.html` |
+| Cardápio | `cardapio.html` |
+| Galeria | `gallery.html` |
+| Blog | `blog.html` |
+| Post do blog | `blog-single.html` |
+
+Também foram adaptadas `about.html` (Sobre nós) e `contact.html` (Contato). O destaque da página do blog leva ao post em `blog-single.html`.
+
+No template, a página do Cardápio se chamava `accomodation.html`. Por causa do SEO, o endereço principal passou a ser `cardapio.html`, mas o `accomodation.html` continua no projeto com o mesmo conteúdo completo, como pede o briefing. Ele aponta o `canonical` para `cardapio.html` para os buscadores não tratarem as duas páginas como conteúdo duplicado.
+
+## Estrutura de pastas
+
+| Pasta | Conteúdo |
+|---|---|
+| raiz | Arquivos do site (`.html`), com `css/`, `js/`, `fonts/` e `vendors/` |
+| `image/` | Apenas o favicon do site (`favicon.png`) |
+| `imagensOriginais/` | Fotos novas no tamanho original em que foram geradas, sem otimização |
+| `imagensOtimizadas/` | Fotos usadas no site, recortadas no tamanho exato de cada espaço, em WebP, com nomes pensados para SEO |
+
+Cada foto otimizada mantém as **dimensões do template** (por exemplo 360×250, 555×280, 263×270 px) e tem `alt` e `title` no código. As imagens foram geradas no Gemini com um estilo fotográfico único: ambiente de izakaya real, pessoas reais e Dragon Ball apenas em detalhes (lanternas com estrelas, cartazes, figuras e esferas do dragão).
+
+## Tema e identidade
+
+- **Logo:** "Zenkai Sushi" em tipografia serifada com destaque laranja.
+- **Favicon:** esfera do dragão de 4 estrelas (`image/favicon.png`).
+- **Cores:** preto azulado e laranja, herdados do template e coerentes com Dragon Ball.
+
+## Créditos
+
+Template original: *Royal Master Hotel*, da Colorlib. Fotos criadas com o Gemini para este trabalho.
