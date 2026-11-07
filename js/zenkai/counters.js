@@ -29,9 +29,12 @@
     Z.marquee = function(){
         gsap.utils.toArray(".zk-marquee__track").forEach(function(track){
             track.innerHTML = track.innerHTML + track.innerHTML;
-            var tween = gsap.to(track, { xPercent: -50, ease: "none", duration: 28, repeat: -1 });
-            // o feixe do Kamehameha dispara da mao do Goku para a direita quando a faixa entra na tela
+            // no Kamehameha as palavras SAEM das maos do Goku (movem para a direita); nas outras faixas seguem para a esquerda
             var beam = track.closest(".zk-kame__beam");
+            var tween = beam
+                ? gsap.fromTo(track, { xPercent: -50 }, { xPercent: 0, ease: "none", duration: 28, repeat: -1 })
+                : gsap.to(track, { xPercent: -50, ease: "none", duration: 28, repeat: -1 });
+            // o feixe do Kamehameha dispara da mao do Goku para a direita quando a faixa entra na tela
             if (beam) {
                 gsap.from(beam, { clipPath: "inset(0 100% 0 0)", duration: 1, ease: "power3.out", clearProps: "clipPath", scrollTrigger: { trigger: beam, start: "top 92%", once: true } });
             }
